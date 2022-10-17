@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <main class="main">
+      <aside class="sidebar">
+        <nav class="nav">
+          <ul>
+            <li><a href="#">Welcome, Jared</a></li>
+            <h2>Clients</h2>
+            <li><a href="#">MoneyTime</a></li>
+            <li><a href="#">Wear It Proud</a></li>
+            <li><a href="#">Woolworths</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <section class="dashboard">
+        <iframe id="container" class="container"> </iframe>
+      </section>
+    </main>
+    <script type="text/javascript">
+      const activeClassName = "active"
+
+      function loadSite(i) {
+        let sites = [
+          "./main.html",
+          "https://app.databox.com/datawall/3cd6f5ae052569e62750e8d04becfa6e0633241af",
+          "https://app.databox.com/datawall/985e5e4aae82d06a6bbbbaaab984d00b063478fbe?boardId=951636",
+          "./dream.html",
+        ]
+        if (i < 0 || i > sites.length) {
+          i = 0
+        }
+        // change the active link
+        const el = document.querySelectorAll(".nav ul li")
+        for (let j = 0; j < el.length; j++) {
+          if (i === j) {
+            el[j].classList.add(activeClassName)
+          } else {
+            el[j].classList.remove(activeClassName)
+          }
+        }
+
+        // load the content
+        document.getElementById("container").src = sites[i]
+      }
+
+      window.addEventListener("load", (evt) => {
+        const el = document.querySelectorAll(".nav ul li")
+        for (let j = 0; j < el.length; j++) {
+          if (el[j]) {
+            el[j].onclick = () => {
+              loadSite(j)
+            }
+          }
+        }
+        loadSite(0)
+      })
+    </script>
+  </body>
+</html>
